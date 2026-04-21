@@ -10,69 +10,82 @@ export default function Navbar() {
   const pathname = usePathname();
 
   return (
-    <nav className="border-b border-gray-200 bg-white">
-      <div className="mx-auto max-w-4xl px-4 sm:px-6">
-        <div className="flex justify-between items-center h-16">
-          <Link href="/" className="text-xl font-semibold text-gray-900">
-            ToolKit
+    <nav className="sticky top-0 z-50 bg-white border-b border-gray-200">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6">
+        <div className="flex items-center justify-between h-16">
+
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-2 shrink-0">
+            <div className="w-7 h-7 bg-blue-600 rounded-lg flex items-center justify-center">
+              <span className="text-white text-xs font-bold">T</span>
+            </div>
+            <span className="text-lg font-semibold text-gray-900">ToolKit</span>
           </Link>
 
+          {/* Desktop nav */}
+          <div className="hidden md:flex items-center gap-1">
+            {TOOLS.map((tool) => {
+              const isActive = pathname === `/${tool.slug}`;
+              return (
+                <Link
+                  key={tool.slug}
+                  href={`/${tool.slug}`}
+                  className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors whitespace-nowrap ${
+                    isActive
+                      ? 'bg-blue-50 text-blue-600'
+                      : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+                  }`}
+                >
+                  {tool.shortName}
+                </Link>
+              );
+            })}
+          </div>
+
+          {/* Mobile hamburger */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="inline-flex items-center justify-center rounded-lg p-2 text-gray-600 hover:bg-gray-50 hover:text-blue-600 md:hidden"
+            className="md:hidden p-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors"
+            aria-label="Toggle menu"
           >
-            <span className="sr-only">Open menu</span>
-            {!isOpen ? (
-              <svg
-                className="h-6 w-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
+            {isOpen ? (
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             ) : (
-              <svg
-                className="h-6 w-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             )}
           </button>
-
-          <div
-            className={`${isOpen ? 'flex' : 'hidden'} absolute left-4 right-4 top-[4.5rem] z-20 flex-col rounded-lg border border-gray-200 bg-white p-2 shadow-sm md:static md:flex md:flex-row md:items-center md:gap-1 md:border-0 md:bg-transparent md:p-0 md:shadow-none`}
-          >
-            {TOOLS.map((tool) => (
-              <Link
-                key={tool.slug}
-                href={`/${tool.slug}`}
-                className={`rounded-lg px-3 py-2 text-sm transition-colors ${
-                  pathname === `/${tool.slug}`
-                    ? 'font-medium text-blue-600'
-                    : 'text-gray-600 hover:text-blue-600'
-                }`}
-                onClick={() => setIsOpen(false)}
-              >
-                {tool.h1.split(' ')[tool.h1.split(' ').length - 2]}
-              </Link>
-            ))}
-          </div>
         </div>
       </div>
+
+      {/* Mobile menu */}
+      {isOpen && (
+        <div className="md:hidden border-t border-gray-100 bg-white px-4 py-3">
+          <div className="grid grid-cols-2 gap-1">
+            {TOOLS.map((tool) => {
+              const isActive = pathname === `/${tool.slug}`;
+              return (
+                <Link
+                  key={tool.slug}
+                  href={`/${tool.slug}`}
+                  onClick={() => setIsOpen(false)}
+                  className={`flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm transition-colors ${
+                    isActive
+                      ? 'bg-blue-50 text-blue-600 font-medium'
+                      : 'text-gray-700 hover:bg-gray-100'
+                  }`}
+                >
+                  <span className="text-base" style={{ fontSize: '16px' }}>{tool.icon}</span>
+                  <span>{tool.shortName}</span>
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      )}
     </nav>
   );
 }
