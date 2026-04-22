@@ -3,7 +3,7 @@ import Link from "next/link";
 import { TOOLS } from "@/lib/tools";
 
 export const metadata: Metadata = {
-  title: "ToolKit - Free Online Tools & Utilities",
+  title: "toolyfy - Free Online Tools & Utilities",
   description:
     "Free online tools for developers: JSON formatter, CSV viewer, cron builder, GST calculator, color palette generator, invoice maker, password generator, and image compressor.",
   keywords: [
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     "gst calculator",
   ],
   openGraph: {
-    title: "ToolKit - Free Online Tools",
+    title: "toolyfy - Free Online Tools",
     description: "Collection of free online tools for developers and professionals",
     type: "website",
     url: "https://toolkit.example.com",
@@ -27,7 +27,7 @@ export default function Home() {
     <div className="space-y-12">
       <div className="space-y-4 text-center">
         <p className="text-xs uppercase tracking-[0.2em] text-gray-400">Online utilities</p>
-        <h1 className="text-3xl font-bold text-gray-900 sm:text-4xl">ToolKit</h1>
+        <h1 className="text-3xl font-bold text-gray-900 sm:text-4xl">toolyfy</h1>
         <p className="text-base leading-relaxed text-gray-700 sm:text-lg">
           Free online tools for developers, designers, and professionals
         </p>

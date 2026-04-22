@@ -58,7 +58,7 @@ export default function Footer() {
 
         <div className="border-t border-gray-200 pt-8">
           <p className="text-center text-gray-400">
-            Copyright {new Date().getFullYear()} ToolKit. All tools are free and run entirely in
+            Copyright {new Date().getFullYear()} toolyfy. All tools are free and run entirely in
             your browser.
           </p>
         </div>

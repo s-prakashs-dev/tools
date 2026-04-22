@@ -4,13 +4,13 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "ToolKit - Free Online Tools",
+  title: "toolyfy - Free Online Tools",
   description: "Collection of free online tools: JSON formatter, CSV viewer, cron builder, GST calculator, color palette generator, invoice maker, password generator, and image compressor.",
   openGraph: {
-    title: "ToolKit - Free Online Tools",
+    title: "toolyfy - Free Online Tools",
     description: "Collection of free online tools for developers and professionals",
     url: "https://toolkit.example.com",
-    siteName: "ToolKit",
+    siteName: "toolyfy",
   },
 };
 

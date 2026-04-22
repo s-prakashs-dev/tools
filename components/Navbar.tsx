@@ -15,12 +15,25 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
 
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 shrink-0">
+          {/* <Link href="/" className="flex items-center gap-2 shrink-0">
             <div className="w-7 h-7 bg-blue-600 rounded-lg flex items-center justify-center">
               <span className="text-white text-xs font-bold">T</span>
             </div>
-            <span className="text-lg font-semibold text-gray-900">ToolKit</span>
-          </Link>
+            <span className="text-lg font-semibold text-gray-900">toolyfy</span>
+          </Link> */}
+          {/* Logo */}
+<Link href="/" className="flex items-center gap-2 shrink-0">
+  <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+      <line x1="5" y1="14" x2="11" y2="4" stroke="white" strokeWidth="2.5" strokeLinecap="round"/>
+      <circle cx="12" cy="3.5" r="3" stroke="white" strokeWidth="2" fill="none"/>
+      <polyline points="4,8 1,11 5,11 2,15" fill="#93c5fd" stroke="#93c5fd" strokeWidth="1.5" strokeLinejoin="round"/>
+    </svg>
+  </div>
+  <span className="text-lg font-bold text-gray-900">
+    Tool<span className="text-blue-600">yfy</span>
+  </span>
+</Link>
 
           {/* Desktop nav */}
           <div className="hidden md:flex items-center gap-1">
