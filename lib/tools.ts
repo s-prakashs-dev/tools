@@ -27,7 +27,7 @@ export const TOOLS: Tool[] = [
   {
     slug: 'csv-formatter',
     shortName: 'CSV',
-    icon: 'CSV',
+    icon: '⊞',
     h1: 'Free Online CSV Formatter & Viewer',
     title: 'CSV Formatter & Viewer - Free Online Tool',
     shortDescription: 'Format and preview CSV data as a clean table',
@@ -40,7 +40,7 @@ export const TOOLS: Tool[] = [
   {
     slug: 'cron-builder',
     shortName: 'Cron',
-    icon: 'CR',
+    icon: '⏱',
     h1: 'Cron Expression Builder & Generator',
     title: 'Cron Expression Builder - Free Online Cron Generator',
     shortDescription: 'Build and validate cron expressions visually',
@@ -53,7 +53,7 @@ export const TOOLS: Tool[] = [
   {
     slug: 'gst-calculator',
     shortName: 'GST',
-    icon: 'Rs',
+    icon: '₹',
     h1: 'GST Calculator India - Calculate GST Online Free',
     title: 'GST Calculator India - Free Online GST Calculator',
     shortDescription: 'Calculate GST amount, CGST, SGST and IGST instantly',
@@ -66,7 +66,7 @@ export const TOOLS: Tool[] = [
   {
     slug: 'color-palette',
     shortName: 'Colors',
-    icon: 'CP',
+    icon: '🎨',
     h1: 'Color Palette Generator - Free Online Tool',
     title: 'Color Palette Generator - Free Online Color Palette Tool',
     shortDescription: 'Generate beautiful color palettes instantly',
@@ -79,7 +79,7 @@ export const TOOLS: Tool[] = [
   {
     slug: 'invoice-maker',
     shortName: 'Invoice',
-    icon: 'IN',
+    icon: '🧾',
     h1: 'Free Online Invoice Maker - Create Invoice PDF',
     title: 'Free Invoice Maker - Create and Download Invoice PDF Online',
     shortDescription: 'Create professional invoices and receipts online',
@@ -92,7 +92,7 @@ export const TOOLS: Tool[] = [
   {
     slug: 'password-generator',
     shortName: 'Password',
-    icon: 'PW',
+    icon: '🔑',
     h1: 'Password Generator & UUID Generator - Free Online Tool',
     title: 'Password Generator & UUID Generator - Free Online Security Tools',
     shortDescription: 'Generate strong random passwords and UUIDs',
@@ -105,7 +105,7 @@ export const TOOLS: Tool[] = [
   {
     slug: 'image-compressor',
     shortName: 'Images',
-    icon: 'IM',
+    icon: '🖼️',
     h1: 'Image Compressor & Resizer - Free Online Tool',
     title: 'Image Compressor & Resizer - Free Online Image Optimizer',
     shortDescription: 'Compress and resize images online for free',
@@ -116,6 +116,17 @@ export const TOOLS: Tool[] = [
     keywords: ['image compressor', 'image resizer'],
   },
 ];
+
+export const RELATED_TOOLS: Record<string, string[]> = {
+  'json-formatter': ['csv-formatter', 'cron-builder', 'password-generator'],
+  'csv-formatter': ['json-formatter', 'invoice-maker', 'image-compressor'],
+  'cron-builder': ['json-formatter', 'password-generator', 'csv-formatter'],
+  'gst-calculator': ['invoice-maker', 'csv-formatter', 'json-formatter'],
+  'color-palette': ['image-compressor', 'invoice-maker', 'password-generator'],
+  'invoice-maker': ['gst-calculator', 'csv-formatter', 'image-compressor'],
+  'password-generator': ['json-formatter', 'cron-builder', 'color-palette'],
+  'image-compressor': ['color-palette', 'invoice-maker', 'csv-formatter'],
+};
 
 export const getToolBySlug = (slug: string): Tool | undefined =>
   TOOLS.find((tool) => tool.slug === slug);

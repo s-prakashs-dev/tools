@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     title: "toolyfy - Free Online Tools",
     description: "Collection of free online tools for developers and professionals",
     type: "website",
-    url: "https://toolkit.example.com",
+    url: "https://toolyfy.in",
   },
 };
 

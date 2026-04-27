@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { TOOLS, type Tool } from '@/lib/tools';
+import { TOOLS, RELATED_TOOLS, type Tool } from '@/lib/tools';
 
 export default function ToolLayout({
   tool,
@@ -16,17 +16,21 @@ export default function ToolLayout({
 
   const getCategoryColor = (category: string) => {
     switch (category) {
-      case 'developer': return 'bg-blue-50';
-      case 'finance': return 'bg-green-50';
-      case 'design': return 'bg-purple-50';
-      default: return 'bg-blue-50';
+      case 'developer': return 'bg-blue-50 text-blue-600';
+      case 'finance': return 'bg-green-50 text-green-600';
+      case 'design': return 'bg-purple-50 text-purple-600';
+      default: return 'bg-blue-50 text-blue-600';
     }
   };
 
   const category = getCategory(tool.slug);
   const iconBg = getCategoryColor(category);
 
-  const relatedTools = TOOLS.filter(t => t.slug !== tool.slug).slice(0, 3);
+  // Get related tools from RELATED_TOOLS map
+  const relatedToolSlugs = RELATED_TOOLS[tool.slug] || [];
+  const relatedTools = relatedToolSlugs
+    .map(slug => TOOLS.find(t => t.slug === slug))
+    .filter((t): t is Tool => t !== undefined);
 
   return (
     <div className="space-y-6">
@@ -39,7 +43,7 @@ export default function ToolLayout({
 
       {/* Tool header */}
       <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-        <div className={`w-16 h-16 ${iconBg} rounded-2xl flex items-center justify-center text-3xl flex-shrink-0`}>
+        <div className={`w-16 h-16 rounded-2xl flex items-center justify-center text-3xl flex-shrink-0 ${getCategoryColor(category).split(' ')[0]}`}>
           {tool.icon}
         </div>
         <div className="flex-1">
@@ -54,7 +58,7 @@ export default function ToolLayout({
       </div>
 
       {/* Ad slot */}
-      <div className="w-full h-[90px] md:h-[90px] bg-gray-50 border border-dashed border-gray-200 rounded-xl" />
+      <div className="w-full min-h-[50px] md:min-h-[90px] bg-gray-50 border border-dashed border-gray-200 rounded-xl" aria-hidden="true" />
 
       {/* Tool content */}
       <div className="bg-white border border-gray-200 rounded-2xl p-6">
@@ -68,26 +72,35 @@ export default function ToolLayout({
       </section>
 
       {/* Related tools */}
-      <section>
-        <h2 className="text-lg font-semibold text-gray-900 mb-4">You might also like</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          {relatedTools.map((relatedTool) => (
-            <Link
-              key={relatedTool.slug}
-              href={`/${relatedTool.slug}`}
-              className="bg-white border border-gray-200 rounded-xl p-4 hover:border-gray-300 transition-colors"
-            >
-              <div className="flex items-center gap-3">
-                <span className="text-2xl">{relatedTool.icon}</span>
-                <div className="flex-1">
-                  <h3 className="text-sm font-medium text-gray-900">{relatedTool.title}</h3>
-                </div>
-                <span className="text-sm text-blue-600 font-medium">Try it →</span>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
+      {relatedTools.length > 0 && (
+        <section>
+          <h2 className="text-lg font-semibold text-gray-900 mb-4">You might also like</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            {relatedTools.map((relatedTool) => {
+              const relatedCategory = getCategory(relatedTool.slug);
+              const relatedIconBg = getCategoryColor(relatedCategory);
+              return (
+                <Link
+                  key={relatedTool.slug}
+                  href={`/${relatedTool.slug}`}
+                  className="bg-white border border-gray-200 rounded-xl p-4 hover:border-gray-300 transition-colors"
+                >
+                  <div className="flex items-start gap-3">
+                    <div className={`w-10 h-10 rounded-lg flex items-center justify-center text-lg flex-shrink-0 ${relatedIconBg.split(' ')[0]}`}>
+                      {relatedTool.icon}
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-sm font-medium text-gray-900">{relatedTool.shortName}</h3>
+                      <p className="text-xs text-gray-500 mt-0.5">{relatedTool.shortDescription}</p>
+                    </div>
+                    <span className="text-sm text-blue-600 font-medium flex-shrink-0">→</span>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        </section>
+      )}
     </div>
   );
 }

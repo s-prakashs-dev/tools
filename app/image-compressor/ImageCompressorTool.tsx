@@ -234,178 +234,194 @@ export default function ImageCompressorTool() {
         </div>
 
         {images.length > 0 && (
-          <div className="space-y-4 rounded-xl border border-gray-200 bg-white p-6">
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          <div className="space-y-6">
+            {/* Controls */}
+            <div className="rounded-xl border border-gray-200 bg-white p-6 space-y-4">
+              {/* Quality slider */}
               <div>
-                <label className="mb-2 block text-sm font-medium text-gray-700">
-                  Quality: {quality}%
-                </label>
+                <div className="flex justify-between text-sm mb-2">
+                  <label className="font-medium text-gray-700">Quality</label>
+                  <span className="text-blue-600 font-medium">{quality}%</span>
+                </div>
                 <input
                   type="range"
                   min="10"
                   max="100"
                   value={quality}
                   onChange={(e) => setQuality(parseInt(e.target.value))}
-                  className="w-full accent-blue-600"
+                  className="w-full accent-blue-600 h-2 rounded-full"
                 />
+                <div className="flex justify-between text-xs text-gray-400 mt-1">
+                  <span>Smaller file</span>
+                  <span>Better quality</span>
+                </div>
               </div>
 
-              <div>
-                <label className="mb-1 block text-sm font-medium text-gray-700">Output Format</label>
-                <select
-                  value={outputFormat}
-                  onChange={(e) => setOutputFormat(e.target.value as 'jpeg' | 'png' | 'webp')}
-                  className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500"
-                >
-                  <option value="jpeg">JPEG</option>
-                  <option value="png">PNG</option>
-                  <option value="webp">WebP</option>
-                </select>
-              </div>
-            </div>
-
-            <div className="space-y-3">
-              <div className="flex flex-wrap gap-3">
-                {[
-                  { value: 'percentage', label: 'Resize by %' },
-                  { value: 'dimensions', label: 'Resize to dimensions' },
-                ].map(({ value, label }) => (
+              {/* Output format selector */}
+              <div className="flex gap-2">
+                {['JPG', 'PNG', 'WebP'].map(fmt => (
                   <button
-                    key={value}
-                    type="button"
-                    onClick={() => setResizeMode(value as 'percentage' | 'dimensions')}
-                    className={`rounded-lg px-4 py-2 font-medium transition-colors ${
-                      resizeMode === value
-                        ? 'bg-blue-600 text-white'
-                        : 'border border-gray-300 bg-white text-gray-700 hover:bg-gray-50'
+                    key={fmt}
+                    onClick={() => setOutputFormat(fmt.toLowerCase() as 'jpeg' | 'png' | 'webp')}
+                    className={`px-4 py-2 rounded-xl text-sm font-medium border transition-colors ${
+                      outputFormat === fmt.toLowerCase()
+                        ? 'bg-blue-600 text-white border-blue-600'
+                        : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50'
                     }`}
                   >
-                    {label}
+                    {fmt}
                   </button>
                 ))}
               </div>
 
-              {resizeMode === 'percentage' ? (
-                <input
-                  type="number"
-                  min="10"
-                  max="100"
-                  value={compressWidth}
-                  onChange={(e) => {
-                    const val = parseInt(e.target.value) || 100;
-                    setCompressWidth(val);
-                    setCompressHeight(val);
-                  }}
-                  className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="Percentage"
-                />
-              ) : (
-                <div className="grid grid-cols-2 gap-2">
-                  <input
-                    type="number"
-                    value={compressWidth}
-                    onChange={(e) => setCompressWidth(parseInt(e.target.value) || 100)}
-                    className="rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    placeholder="Width"
-                  />
-                  <input
-                    type="number"
-                    value={compressHeight}
-                    onChange={(e) => setCompressHeight(parseInt(e.target.value) || 100)}
-                    disabled={maintainAspect}
-                    className="rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:cursor-not-allowed disabled:opacity-50"
-                    placeholder="Height"
-                  />
+              {/* Resize options */}
+              <div className="space-y-3 pt-4 border-t border-gray-100">
+                <div className="flex flex-wrap gap-3">
+                  {[
+                    { value: 'percentage', label: 'Resize by %' },
+                    { value: 'dimensions', label: 'Resize to dimensions' },
+                  ].map(({ value, label }) => (
+                    <button
+                      key={value}
+                      type="button"
+                      onClick={() => setResizeMode(value as 'percentage' | 'dimensions')}
+                      className={`rounded-lg px-4 py-2 font-medium transition-colors ${
+                        resizeMode === value
+                          ? 'bg-blue-600 text-white'
+                          : 'border border-gray-300 bg-white text-gray-700 hover:bg-gray-50'
+                      }`}
+                    >
+                      {label}
+                    </button>
+                  ))}
                 </div>
-              )}
 
-              <label className="flex items-center text-sm text-gray-700">
-                <input
-                  type="checkbox"
-                  checked={maintainAspect}
-                  onChange={(e) => setMaintainAspect(e.target.checked)}
-                  className="mr-2 accent-blue-600"
-                />
-                Maintain aspect ratio
-              </label>
-            </div>
-
-            <button
-              onClick={reprocessImages}
-              className="rounded-lg bg-blue-600 px-4 py-2 font-medium text-white transition-colors hover:bg-blue-700"
-            >
-              Reprocess Images
-            </button>
-          </div>
-        )}
-
-        {images.length > 0 && percentageSaved > 0 && (
-          <div className="inline-flex items-center rounded-full bg-green-100 px-3 py-1 text-sm font-medium text-green-700">
-            Saved {formatFileSize(calculationSaved)} ({percentageSaved}%)
-          </div>
-        )}
-
-        <div className="grid grid-cols-1 gap-6">
-          {images.map((processedImage) => (
-            <div key={processedImage.id} className="overflow-hidden rounded-xl border border-gray-200 bg-white">
-              <div className="grid grid-cols-1 gap-4 bg-gray-50 p-4 md:grid-cols-2">
-                <div>
-                  <p className="mb-2 text-sm font-semibold text-gray-700">Original</p>
-                  <img
-                    src={processedImage.original.preview}
-                    alt="Original"
-                    className="w-full rounded-lg border border-gray-200 bg-white object-contain"
-                  />
-                  <div className="mt-2 space-y-1 text-sm text-gray-700">
-                    <p>Size: {formatFileSize(processedImage.original.size)}</p>
-                    <p>
-                      Dimensions: {processedImage.original.width} x {processedImage.original.height}px
-                    </p>
+                {resizeMode === 'percentage' ? (
+                  <div>
+                    <label className="text-sm font-medium text-gray-700 mb-2 block">Scale to {compressWidth}%</label>
+                    <input
+                      type="range"
+                      min="10"
+                      max="100"
+                      value={compressWidth}
+                      onChange={(e) => {
+                        const val = parseInt(e.target.value) || 100;
+                        setCompressWidth(val);
+                        setCompressHeight(val);
+                      }}
+                      className="w-full accent-blue-600 h-2 rounded-full"
+                    />
                   </div>
-                </div>
-
-                <div>
-                  <p className="mb-2 text-sm font-semibold text-gray-700">Compressed</p>
-                  {processedImage.compressed.preview && (
-                    <>
-                      <img
-                        src={processedImage.compressed.preview}
-                        alt="Compressed"
-                        className="w-full rounded-lg border border-gray-200 bg-white object-contain"
+                ) : (
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <label className="text-sm font-medium text-gray-700 mb-1 block">Width</label>
+                      <input
+                        type="number"
+                        value={compressWidth}
+                        onChange={(e) => setCompressWidth(parseInt(e.target.value) || 100)}
+                        className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        placeholder="Width"
                       />
-                      <div className="mt-2 space-y-1 text-sm text-gray-700">
-                        <p>Size: {formatFileSize(processedImage.compressed.size)}</p>
-                        <p>
-                          Dimensions: {processedImage.compressed.width} x {processedImage.compressed.height}px
-                        </p>
-                        <p className="inline-flex rounded-full bg-green-100 px-3 py-1 text-sm font-medium text-green-700">
-                          Saved{' '}
-                          {formatFileSize(
-                            Math.max(0, processedImage.original.size - processedImage.compressed.size)
-                          )}
-                        </p>
-                      </div>
-                      <button
-                        onClick={() => downloadImage(processedImage)}
-                        className="mt-3 rounded-lg bg-green-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-green-700"
-                      >
-                        Download
-                      </button>
-                    </>
-                  )}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+                    </div>
+                    <div>
+                      <label className="text-sm font-medium text-gray-700 mb-1 block">Height</label>
+                      <input
+                        type="number"
+                        value={compressHeight}
+                        onChange={(e) => setCompressHeight(parseInt(e.target.value) || 100)}
+                        disabled={maintainAspect}
+                        className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:cursor-not-allowed disabled:opacity-50"
+                        placeholder="Height"
+                      />
+                    </div>
+                  </div>
+                )}
 
-        {images.length > 0 && (
-          <button
-            onClick={clearImages}
-            className="rounded-lg bg-red-600 px-4 py-2 font-medium text-white transition-colors hover:bg-red-700"
-          >
-            Clear All
-          </button>
+                <label className="flex items-center text-sm text-gray-700">
+                  <input
+                    type="checkbox"
+                    checked={maintainAspect}
+                    onChange={(e) => setMaintainAspect(e.target.checked)}
+                    className="mr-2 accent-blue-600"
+                  />
+                  Maintain aspect ratio
+                </label>
+              </div>
+
+              <button
+                onClick={reprocessImages}
+                className="w-full rounded-lg bg-blue-600 hover:bg-blue-700 text-white px-4 py-2.5 font-medium transition-colors"
+              >
+                Apply Changes
+              </button>
+            </div>
+
+            {/* Image previews */}
+            <div className="space-y-6">
+              {images.map((processedImage) => {
+                const savings = Math.max(0, processedImage.original.size - processedImage.compressed.size);
+                const savingsPercent = processedImage.original.size > 0 
+                  ? Math.round((savings / processedImage.original.size) * 100)
+                  : 0;
+                
+                return (
+                  <div key={processedImage.id} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* Before */}
+                    <div>
+                      <div className="flex justify-between text-sm mb-2">
+                        <span className="font-medium text-gray-700">Original</span>
+                        <span className="text-gray-500">{formatFileSize(processedImage.original.size)}</span>
+                      </div>
+                      <img 
+                        src={processedImage.original.preview} 
+                        alt="Original" 
+                        className="w-full rounded-xl border border-gray-200 object-contain max-h-64"
+                      />
+                    </div>
+
+                    {/* After */}
+                    <div>
+                      <div className="flex justify-between text-sm mb-2">
+                        <span className="font-medium text-gray-700">Compressed</span>
+                        <span className="text-green-600 font-medium">
+                          {formatFileSize(processedImage.compressed.size)}
+                          <span className="ml-2 bg-green-100 text-green-700 text-xs px-2 py-0.5 rounded-full">
+                            {savingsPercent}% saved
+                          </span>
+                        </span>
+                      </div>
+                      {processedImage.compressed.preview && (
+                        <img 
+                          src={processedImage.compressed.preview} 
+                          alt="Compressed" 
+                          className="w-full rounded-xl border border-gray-200 object-contain max-h-64"
+                        />
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Download button */}
+            <div className="flex gap-3">
+              {images[0]?.compressed.blob && (
+                <button
+                  onClick={() => downloadImage(images[0])}
+                  className="flex-1 mt-6 bg-blue-600 hover:bg-blue-700 text-white rounded-xl py-3 text-sm font-medium flex items-center justify-center gap-2 transition-colors"
+                >
+                  ⬇ Download Compressed Image
+                </button>
+              )}
+              <button
+                onClick={clearImages}
+                className="mt-6 bg-red-600 hover:bg-red-700 text-white rounded-xl px-6 py-3 text-sm font-medium transition-colors"
+              >
+                Clear
+              </button>
+            </div>
+          </div>
         )}
       </div>
       <section className="prose max-w-none pt-10 text-gray-700">

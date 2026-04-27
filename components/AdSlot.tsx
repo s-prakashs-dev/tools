@@ -3,14 +3,15 @@ export default function AdSlot({ slot, className = "" }: { slot: string; classNa
 
   if (!adsenseId) {
     return (
-      <div className={`rounded-lg border border-gray-200 bg-gray-50 p-2 text-center ${className}`}>
-        <p className="text-xs text-gray-400">Ad slot placeholder</p>
-      </div>
+      <div
+        className={`w-full min-h-[50px] md:min-h-[90px] bg-gray-50 rounded-xl border border-dashed border-gray-200 ${className}`}
+        aria-hidden="true"
+      />
     );
   }
 
   return (
-    <div className={`my-4 rounded-lg border border-gray-200 bg-gray-50 p-2 text-center ${className}`}>
+    <div className={`my-4 w-full min-h-[50px] md:min-h-[90px] rounded-xl ${className}`}>
       <ins
         className="adsbygoogle"
         style={{
