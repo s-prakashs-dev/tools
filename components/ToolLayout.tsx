@@ -9,7 +9,7 @@ export default function ToolLayout({
   children: React.ReactNode;
 }) {
   const getCategory = (slug: string) => {
-    if (['json-formatter', 'csv-formatter', 'cron-builder'].includes(slug)) return 'developer';
+    if (['json-formatter', 'csv-formatter', 'cron-builder', 'jwt-decoder', 'password-generator', 'base64', 'unix-timestamp', 'url-encoder', 'uuid-generator', 'html-encoder'].includes(slug)) return 'developer';
     if (['gst-calculator', 'invoice-maker'].includes(slug)) return 'finance';
     return 'design';
   };
@@ -65,11 +65,55 @@ export default function ToolLayout({
         {children}
       </div>
 
-      {/* SEO description */}
+      {/* About section */}
       <section className="bg-gray-50 rounded-2xl p-6">
-        <h2 className="text-base font-semibold text-gray-900 mb-3">About this tool</h2>
-        <p className="text-sm text-gray-600 leading-relaxed">{tool.fullDescription}</p>
+        <h2 className="text-lg font-semibold text-gray-900 mb-4">About this tool</h2>
+        <div className="text-sm text-gray-600 space-y-3 leading-relaxed">
+          {tool.fullDescription.split('\n\n').map((paragraph, i) => (
+            <p key={i}>{paragraph}</p>
+          ))}
+        </div>
       </section>
+
+      {/* How to use section */}
+      {tool.howToSteps && tool.howToSteps.length > 0 && (
+        <section className="bg-white rounded-2xl p-6 border border-gray-200">
+          <h2 className="text-lg font-semibold text-gray-900 mb-6">How to use this tool</h2>
+          <div className="space-y-6">
+            {tool.howToSteps.map((step) => (
+              <div key={step.step} className="flex gap-4">
+                <div className="flex-shrink-0">
+                  <div className="flex items-center justify-center w-8 h-8 bg-blue-600 text-white rounded-full text-sm font-semibold">
+                    {step.step}
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <h3 className="font-semibold text-gray-900 text-sm mb-1">{step.title}</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">{step.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* FAQ section */}
+      {tool.faqs && tool.faqs.length > 0 && (
+        <section className="bg-gray-50 rounded-2xl p-6">
+          <h2 className="text-lg font-semibold text-gray-900 mb-6">Frequently Asked Questions</h2>
+          <div className="space-y-6">
+            {tool.faqs.map((faq, i) => (
+              <div key={i}>
+                <h3 className="text-sm font-semibold text-gray-900 mb-2">{faq.question}</h3>
+                <p className="text-sm text-gray-600 leading-relaxed">{faq.answer}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* Ad slot */}
+      <div className="w-full min-h-[50px] md:min-h-[90px] bg-gray-50 border border-dashed border-gray-200 rounded-xl" aria-hidden="true" />
 
       {/* Related tools */}
       {relatedTools.length > 0 && (

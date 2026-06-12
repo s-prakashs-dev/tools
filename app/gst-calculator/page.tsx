@@ -1,6 +1,6 @@
-import Head from 'next/head';
 import type { Metadata } from 'next';
 import ToolLayout from '@/components/ToolLayout';
+import ToolSchema from '@/components/ToolSchema';
 import { getToolBySlug } from '@/lib/tools';
 import GSTCalculatorTool from './GSTCalculatorTool';
 
@@ -24,6 +24,7 @@ export function generateMetadata(): Metadata {
       title: 'GST Calculator India — Free Online Tool',
       description: 'Calculate GST online free for India. Add or remove GST instantly and see CGST, SGST, IGST details.',
       url: 'https://toolyfy.in/gst-calculator',
+      images: [{ url: 'https://toolyfy.in/og/gst-calculator.png', width: 1200, height: 630 }],
     },
     alternates: {
       canonical: 'https://toolyfy.in/gst-calculator',
@@ -33,8 +34,16 @@ export function generateMetadata(): Metadata {
 
 export default function GSTCalculatorPage() {
   return (
-    <ToolLayout tool={tool}>
-      <GSTCalculatorTool />
-    </ToolLayout>
+    <>
+      <ToolSchema
+        toolName={tool.title}
+        toolSlug={tool.slug}
+        description={tool.metaDescription}
+        faqs={tool.faqs || []}
+      />
+      <ToolLayout tool={tool}>
+        <GSTCalculatorTool />
+      </ToolLayout>
+    </>
   );
 }

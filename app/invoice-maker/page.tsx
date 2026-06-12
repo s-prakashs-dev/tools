@@ -1,6 +1,6 @@
-import Head from 'next/head';
 import type { Metadata } from 'next';
 import ToolLayout from '@/components/ToolLayout';
+import ToolSchema from '@/components/ToolSchema';
 import { getToolBySlug } from '@/lib/tools';
 import InvoiceMakerTool from './InvoiceMakerTool';
 
@@ -24,6 +24,7 @@ export function generateMetadata(): Metadata {
       description:
         'Create professional GST invoices and receipts online free. Download as PDF. Add items, GST, logo. No signup.',
       url: 'https://toolyfy.in/invoice-maker',
+      images: [{ url: 'https://toolyfy.in/og/invoice-maker.png', width: 1200, height: 630 }],
     },
     alternates: {
       canonical: 'https://toolyfy.in/invoice-maker',
@@ -33,8 +34,16 @@ export function generateMetadata(): Metadata {
 
 export default function InvoiceMakerPage() {
   return (
-    <ToolLayout tool={tool}>
-      <InvoiceMakerTool />
-    </ToolLayout>
+    <>
+      <ToolSchema
+        toolName={tool.title}
+        toolSlug={tool.slug}
+        description={tool.metaDescription}
+        faqs={tool.faqs || []}
+      />
+      <ToolLayout tool={tool}>
+        <InvoiceMakerTool />
+      </ToolLayout>
+    </>
   );
 }

@@ -1,6 +1,6 @@
-import Head from 'next/head';
 import type { Metadata } from 'next';
 import ToolLayout from '@/components/ToolLayout';
+import ToolSchema from '@/components/ToolSchema';
 import { getToolBySlug } from '@/lib/tools';
 import ColorPaletteTool from './ColorPaletteTool';
 
@@ -26,6 +26,7 @@ export function generateMetadata(): Metadata {
       description:
         'Generate beautiful color palettes online free. Get HEX RGB HSL values instantly. Create complementary triadic analogous color schemes.',
       url: 'https://toolyfy.in/color-palette',
+      images: [{ url: 'https://toolyfy.in/og/color-palette.png', width: 1200, height: 630 }],
     },
     alternates: {
       canonical: 'https://toolyfy.in/color-palette',
@@ -36,26 +37,12 @@ export function generateMetadata(): Metadata {
 export default function ColorPalettePage() {
   return (
     <>
-      <Head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              '@context': 'https://schema.org',
-              '@type': 'SoftwareApplication',
-              name: 'Color Palette Generator',
-              description: 'Free online color palette generator',
-              url: 'https://toolyfy.in/color-palette',
-              applicationCategory: 'DeveloperApplication',
-              offers: {
-                '@type': 'Offer',
-                price: '0',
-                priceCurrency: 'INR',
-              },
-            }),
-          }}
-        />
-      </Head>
+      <ToolSchema
+        toolName={tool.title}
+        toolSlug={tool.slug}
+        description={tool.metaDescription}
+        faqs={tool.faqs || []}
+      />
       <ToolLayout tool={tool}>
         <ColorPaletteTool />
       </ToolLayout>

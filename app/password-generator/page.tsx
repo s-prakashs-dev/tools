@@ -1,6 +1,6 @@
-import Head from 'next/head';
 import type { Metadata } from 'next';
 import ToolLayout from '@/components/ToolLayout';
+import ToolSchema from '@/components/ToolSchema';
 import { getToolBySlug } from '@/lib/tools';
 import PasswordGeneratorTool from './PasswordGeneratorTool';
 
@@ -24,6 +24,7 @@ export function generateMetadata(): Metadata {
       description:
         'Generate strong random passwords and UUIDs instantly online. Customise length and complexity. Free secure password generator.',
       url: 'https://toolyfy.in/password-generator',
+      images: [{ url: 'https://toolyfy.in/og/password-generator.png', width: 1200, height: 630 }],
     },
     alternates: {
       canonical: 'https://toolyfy.in/password-generator',
@@ -33,8 +34,16 @@ export function generateMetadata(): Metadata {
 
 export default function PasswordGeneratorPage() {
   return (
-    <ToolLayout tool={tool}>
-      <PasswordGeneratorTool />
-    </ToolLayout>
+    <>
+      <ToolSchema
+        toolName={tool.title}
+        toolSlug={tool.slug}
+        description={tool.metaDescription}
+        faqs={tool.faqs || []}
+      />
+      <ToolLayout tool={tool}>
+        <PasswordGeneratorTool />
+      </ToolLayout>
+    </>
   );
 }

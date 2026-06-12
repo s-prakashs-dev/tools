@@ -1,6 +1,6 @@
-import Head from 'next/head';
 import type { Metadata } from 'next';
 import ToolLayout from '@/components/ToolLayout';
+import ToolSchema from '@/components/ToolSchema';
 import { getToolBySlug } from '@/lib/tools';
 import CronBuilderTool from './CronBuilderTool';
 
@@ -23,6 +23,7 @@ export function generateMetadata(): Metadata {
       description:
         'Build and validate cron expressions visually online. Get human readable cron descriptions and next run times.',
       url: 'https://toolyfy.in/cron-builder',
+      images: [{ url: 'https://toolyfy.in/og/cron-builder.png', width: 1200, height: 630 }],
     },
     alternates: {
       canonical: 'https://toolyfy.in/cron-builder',
@@ -32,8 +33,16 @@ export function generateMetadata(): Metadata {
 
 export default function CronBuilderPage() {
   return (
-    <ToolLayout tool={tool}>
-      <CronBuilderTool />
-    </ToolLayout>
+    <>
+      <ToolSchema
+        toolName={tool.title}
+        toolSlug={tool.slug}
+        description={tool.metaDescription}
+        faqs={tool.faqs || []}
+      />
+      <ToolLayout tool={tool}>
+        <CronBuilderTool />
+      </ToolLayout>
+    </>
   );
 }

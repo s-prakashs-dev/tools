@@ -1,6 +1,6 @@
-import Head from 'next/head';
 import type { Metadata } from 'next';
 import ToolLayout from '@/components/ToolLayout';
+import ToolSchema from '@/components/ToolSchema';
 import { getToolBySlug } from '@/lib/tools';
 import CSVFormatterTool from './CSVFormatterTool';
 
@@ -23,6 +23,7 @@ export function generateMetadata(): Metadata {
       description:
         'Format and preview CSV data as a clean table online free. Convert CSV to table instantly in browser.',
       url: 'https://toolyfy.in/csv-formatter',
+      images: [{ url: 'https://toolyfy.in/og/csv-formatter.png', width: 1200, height: 630 }],
     },
     alternates: {
       canonical: 'https://toolyfy.in/csv-formatter',
@@ -32,8 +33,16 @@ export function generateMetadata(): Metadata {
 
 export default function CSVFormatterPage() {
   return (
-    <ToolLayout tool={tool}>
-      <CSVFormatterTool />
-    </ToolLayout>
+    <>
+      <ToolSchema
+        toolName={tool.title}
+        toolSlug={tool.slug}
+        description={tool.metaDescription}
+        faqs={tool.faqs || []}
+      />
+      <ToolLayout tool={tool}>
+        <CSVFormatterTool />
+      </ToolLayout>
+    </>
   );
 }

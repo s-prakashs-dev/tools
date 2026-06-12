@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import ToolLayout from '@/components/ToolLayout';
+import ToolSchema from '@/components/ToolSchema';
 import { getToolBySlug } from '@/lib/tools';
 import JSONFormatterTool from './JSONFormatterTool';
 
@@ -23,6 +24,7 @@ export function generateMetadata(): Metadata {
       title: 'JSON Formatter & Validator Online Free — Toolyfy',
       description: 'Format and validate JSON instantly in your browser. Free, fast, no signup.',
       url: 'https://toolyfy.in/json-formatter',
+      images: [{ url: 'https://toolyfy.in/og/json-formatter.png', width: 1200, height: 630 }],
     },
     alternates: {
       canonical: 'https://toolyfy.in/json-formatter',
@@ -32,8 +34,16 @@ export function generateMetadata(): Metadata {
 
 export default function JSONFormatterPage() {
   return (
-    <ToolLayout tool={tool}>
-      <JSONFormatterTool />
-    </ToolLayout>
+    <>
+      <ToolSchema
+        toolName={tool.title}
+        toolSlug={tool.slug}
+        description={tool.metaDescription}
+        faqs={tool.faqs || []}
+      />
+      <ToolLayout tool={tool}>
+        <JSONFormatterTool />
+      </ToolLayout>
+    </>
   );
 }
