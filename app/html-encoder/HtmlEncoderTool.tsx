@@ -36,7 +36,6 @@ export default function HtmlEncoderTool() {
     '℘': '&weierp;',
     'ℑ': '&image;',
     'ℜ': '&real;',
-    '™': '&trade;',
     '∀': '&forall;',
     '∂': '&part;',
     '∃': '&exists;',
@@ -251,11 +250,11 @@ export default function HtmlEncoderTool() {
       <div className="bg-gray-50 border border-gray-200 rounded-lg p-4">
         <h4 className="text-sm font-semibold text-gray-900 mb-3">Common HTML Entities</h4>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-2 text-xs">
-          <div><code className="bg-gray-100 px-2 py-1 rounded">&amp;</code> → &</div>
+          <div><code className="bg-gray-100 px-2 py-1 rounded">&amp;</code> → &amp;</div>
           <div><code className="bg-gray-100 px-2 py-1 rounded">&lt;</code> → &lt;</div>
-          <div><code className="bg-gray-100 px-2 py-1 rounded">&gt;</code> → ></div>
-          <div><code className="bg-gray-100 px-2 py-1 rounded">&quot;</code> → "</div>
-          <div><code className="bg-gray-100 px-2 py-1 rounded">&#39;</code> → '</div>
+          <div><code className="bg-gray-100 px-2 py-1 rounded">&gt;</code> → &gt;</div>
+          <div><code className="bg-gray-100 px-2 py-1 rounded">&quot;</code> → &quot;</div>
+          <div><code className="bg-gray-100 px-2 py-1 rounded">&#39;</code> → &#39;</div>
           <div><code className="bg-gray-100 px-2 py-1 rounded">&nbsp;</code> → (space)</div>
         </div>
       </div>
