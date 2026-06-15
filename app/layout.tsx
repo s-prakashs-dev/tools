@@ -1,7 +1,20 @@
 import type { Metadata } from "next";
+import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const outfit = Outfit({
+  subsets: ["latin"],
+  variable: "--font-outfit",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: {
@@ -36,15 +49,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full antialiased scroll-smooth">
+    <html lang="en" className={`${inter.variable} ${outfit.variable} h-full antialiased scroll-smooth`}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
-      <body className="flex min-h-full flex-col bg-white text-gray-900">
+      <body className="flex min-h-full flex-col bg-slate-50/50 text-slate-900 font-sans">
         <Navbar />
-        <main className="flex-1 w-full bg-white">
-          <div className="mx-auto w-full max-w-4xl px-4 pt-8 pb-16 sm:px-6">
+        <main className="flex-1 w-full">
+          <div className="mx-auto w-full max-w-6xl px-4 pt-8 pb-16 sm:px-6">
             {children}
           </div>
         </main>
