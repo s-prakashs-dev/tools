@@ -27,6 +27,12 @@ export function generateMetadata(): Metadata {
       url: 'https://toolyfy.in/image-compressor',
       images: [{ url: 'https://toolyfy.in/og/image-compressor.png', width: 1200, height: 630 }],
     },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'Image Compressor Online Free — Compress JPG PNG WebP',
+      description: 'Compress and resize images online for free. Reduce image file size without losing quality.',
+      images: ['https://toolyfy.in/og/image-compressor.png'],
+    },
     alternates: {
       canonical: 'https://toolyfy.in/image-compressor',
     },

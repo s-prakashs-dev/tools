@@ -8,7 +8,7 @@ const CATEGORIES = [
   {
     name: 'Developer Tools',
     color: 'blue',
-    tools: ['json-formatter', 'csv-formatter', 'cron-builder'],
+    tools: ['json-formatter', 'csv-formatter', 'cron-builder', 'jwt-decoder', 'base64', 'unix-timestamp', 'url-encoder', 'uuid-generator', 'html-encoder'],
   },
   {
     name: 'Finance & Business',
@@ -50,7 +50,7 @@ export default function HomeClient() {
           {/* Announcement badge */}
           <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-700 text-sm font-medium px-4 py-1.5 rounded-full border border-blue-100 mb-6">
             <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
-            8 free tools — no signup required
+            {TOOLS.length} free tools — no signup required
           </div>
           
           {/* H1 */}
@@ -103,7 +103,7 @@ export default function HomeClient() {
         <div className="max-w-4xl mx-auto px-4">
           <div className="flex flex-wrap justify-center divide-x divide-gray-200 gap-y-2">
             {[
-              { value: '8', label: 'Free Tools' },
+              { value: String(TOOLS.length), label: 'Free Tools' },
               { value: '100%', label: 'Browser-Based' },
               { value: '0', label: 'Signup Required' },
               { value: '∞', label: 'Uses Per Day' },

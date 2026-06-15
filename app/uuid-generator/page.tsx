@@ -18,6 +18,12 @@ export function generateMetadata(): Metadata {
       url: 'https://toolyfy.in/uuid-generator',
       images: [{ url: 'https://toolyfy.in/og/uuid-generator.png', width: 1200, height: 630 }],
     },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'UUID Generator - Generate Unique Identifiers Online',
+      description: 'Generate UUID v4 and v1 identifiers instantly. Batch support up to 100 UUIDs per generation.',
+      images: ['https://toolyfy.in/og/uuid-generator.png'],
+    },
     alternates: {
       canonical: 'https://toolyfy.in/uuid-generator',
     },

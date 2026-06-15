@@ -26,6 +26,12 @@ export function generateMetadata(): Metadata {
       url: 'https://toolyfy.in/jwt-decoder',
       images: [{ url: 'https://toolyfy.in/og/jwt-decoder.png', width: 1200, height: 630 }],
     },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'JWT Decoder & Validator — Decode JWT Tokens Online Free',
+      description: 'Decode JWT tokens instantly. View all claims and check expiry status. Completely private, browser-based.',
+      images: ['https://toolyfy.in/og/jwt-decoder.png'],
+    },
     alternates: {
       canonical: 'https://toolyfy.in/jwt-decoder',
     },

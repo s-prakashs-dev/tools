@@ -1,8 +1,22 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | toolyfy",
-  description: "Learn how toolyfy handles data, cookies, and privacy for its browser-based tools.",
+  title: "Privacy Policy | Toolyfy",
+  description: "Learn how Toolyfy handles data, cookies, and privacy for its browser-based tools.",
+  alternates: {
+    canonical: "https://toolyfy.in/privacy",
+  },
+  openGraph: {
+    title: "Privacy Policy | Toolyfy",
+    description: "Learn how Toolyfy handles data, cookies, and privacy for its browser-based tools.",
+    type: "website",
+    url: "https://toolyfy.in/privacy",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Privacy Policy | Toolyfy",
+    description: "Learn how Toolyfy handles data, cookies, and privacy for its browser-based tools.",
+  },
 };
 
 export default function PrivacyPage() {

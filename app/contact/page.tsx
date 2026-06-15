@@ -1,8 +1,22 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contact | toolyfy",
-  description: "Get in touch with the toolyfy team for feedback, support, or partnership inquiries.",
+  title: "Contact | Toolyfy",
+  description: "Get in touch with the Toolyfy team for feedback, support, or partnership inquiries.",
+  alternates: {
+    canonical: "https://toolyfy.in/contact",
+  },
+  openGraph: {
+    title: "Contact | Toolyfy",
+    description: "Get in touch with the Toolyfy team for feedback, support, or partnership inquiries.",
+    type: "website",
+    url: "https://toolyfy.in/contact",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact | Toolyfy",
+    description: "Get in touch with the Toolyfy team for feedback, support, or partnership inquiries.",
+  },
 };
 
 export default function ContactPage() {

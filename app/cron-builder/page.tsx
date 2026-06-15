@@ -25,6 +25,12 @@ export function generateMetadata(): Metadata {
       url: 'https://toolyfy.in/cron-builder',
       images: [{ url: 'https://toolyfy.in/og/cron-builder.png', width: 1200, height: 630 }],
     },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'Cron Expression Builder & Generator Online Free',
+      description: 'Build and validate cron expressions visually online. Get human readable cron descriptions and next run times.',
+      images: ['https://toolyfy.in/og/cron-builder.png'],
+    },
     alternates: {
       canonical: 'https://toolyfy.in/cron-builder',
     },

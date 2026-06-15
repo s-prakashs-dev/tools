@@ -26,6 +26,12 @@ export function generateMetadata(): Metadata {
       url: 'https://toolyfy.in/base64',
       images: [{ url: 'https://toolyfy.in/og/base64.png', width: 1200, height: 630 }],
     },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'Base64 Encoder & Decoder — Encode Decode Online Free',
+      description: 'Encode text to Base64 or decode Base64 strings online free. No signup, completely private, browser-based.',
+      images: ['https://toolyfy.in/og/base64.png'],
+    },
     alternates: {
       canonical: 'https://toolyfy.in/base64',
     },

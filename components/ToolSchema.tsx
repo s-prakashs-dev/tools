@@ -29,10 +29,16 @@ export default function ToolSchema({ toolName, toolSlug, description, faqs }: Sc
     description: description,
     applicationCategory: 'UtilitiesApplication',
     operatingSystem: 'Any',
+    browserRequirements: 'Requires JavaScript',
     offers: {
       '@type': 'Offer',
       price: '0',
       priceCurrency: 'INR',
+    },
+    provider: {
+      '@type': 'Organization',
+      name: 'Toolyfy',
+      url: 'https://toolyfy.in',
     },
   };
 

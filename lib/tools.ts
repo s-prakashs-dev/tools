@@ -810,14 +810,14 @@ export const TOOLS: Tool[] = [
 ];
 
 export const RELATED_TOOLS: Record<string, string[]> = {
-  'json-formatter': ['csv-formatter', 'jwt-decoder', 'html-encoder'],
+  'json-formatter': ['csv-formatter', 'jwt-decoder', 'base64'],
   'csv-formatter': ['json-formatter', 'base64', 'url-encoder'],
   'cron-builder': ['json-formatter', 'password-generator', 'unix-timestamp'],
-  'gst-calculator': ['invoice-maker', 'csv-formatter', 'json-formatter'],
-  'color-palette': ['image-compressor', 'invoice-maker', 'password-generator'],
-  'invoice-maker': ['gst-calculator', 'csv-formatter', 'image-compressor'],
-  'password-generator': ['json-formatter', 'cron-builder', 'uuid-generator'],
-  'image-compressor': ['color-palette', 'invoice-maker', 'csv-formatter'],
+  'gst-calculator': ['invoice-maker', 'csv-formatter', 'unix-timestamp'],
+  'color-palette': ['image-compressor', 'csv-formatter', 'json-formatter'],
+  'invoice-maker': ['gst-calculator', 'image-compressor', 'csv-formatter'],
+  'password-generator': ['uuid-generator', 'jwt-decoder', 'base64'],
+  'image-compressor': ['invoice-maker', 'color-palette', 'csv-formatter'],
   'jwt-decoder': ['base64', 'url-encoder', 'html-encoder'],
   'base64': ['jwt-decoder', 'url-encoder', 'html-encoder'],
   'unix-timestamp': ['cron-builder', 'jwt-decoder', 'json-formatter'],

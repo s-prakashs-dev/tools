@@ -24,6 +24,12 @@ export function generateMetadata(): Metadata {
       url: 'https://toolyfy.in/unix-timestamp',
       images: [{ url: 'https://toolyfy.in/og/unix-timestamp.png', width: 1200, height: 630 }],
     },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'Unix Timestamp Converter - Convert to/from Date Online',
+      description: 'Convert Unix epoch time to human-readable dates. Real-time timestamp clock, UTC and IST support.',
+      images: ['https://toolyfy.in/og/unix-timestamp.png'],
+    },
     alternates: {
       canonical: 'https://toolyfy.in/unix-timestamp',
     },

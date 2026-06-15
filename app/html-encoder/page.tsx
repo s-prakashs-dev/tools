@@ -18,6 +18,12 @@ export function generateMetadata(): Metadata {
       url: 'https://toolyfy.in/html-encoder',
       images: [{ url: 'https://toolyfy.in/og/html-encoder.png', width: 1200, height: 630 }],
     },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'HTML Entity Encoder & Decoder - HTML Encoding Tool',
+      description: 'Encode text to HTML entities or decode HTML-encoded strings online. Prevent XSS attacks with safe HTML encoding.',
+      images: ['https://toolyfy.in/og/html-encoder.png'],
+    },
     alternates: {
       canonical: 'https://toolyfy.in/html-encoder',
     },

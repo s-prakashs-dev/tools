@@ -4,13 +4,29 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "toolyfy - Free Online Tools",
-  description: "Collection of free online tools: JSON formatter, CSV viewer, cron builder, GST calculator, color palette generator, invoice maker, password generator, and image compressor.",
+  title: {
+    default: "Toolyfy — Free Online Tools for Developers & Professionals",
+    template: "%s | Toolyfy",
+  },
+  description:
+    "14+ free browser-based tools: JSON formatter, JWT decoder, Base64 encoder, GST calculator, invoice maker, password generator, and more. No signup, 100% private, works offline.",
+  metadataBase: new URL("https://toolyfy.in"),
   openGraph: {
-    title: "toolyfy - Free Online Tools",
-    description: "Collection of free online tools for developers and professionals",
-    url: "https://toolkit.example.com",
-    siteName: "toolyfy",
+    title: "Toolyfy — Free Online Tools for Developers & Professionals",
+    description:
+      "14+ free tools for developers and professionals. JSON, JWT, Base64, GST, Invoice, Password, and more. No signup, browser-based, always free.",
+    url: "https://toolyfy.in",
+    siteName: "Toolyfy",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Toolyfy — Free Online Tools for Developers & Professionals",
+    description:
+      "14+ free tools for developers and professionals. No signup, browser-based, always free.",
+  },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || "",
   },
 };
 

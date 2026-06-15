@@ -17,6 +17,12 @@ export function generateMetadata(): Metadata {
       url: 'https://toolyfy.in/url-encoder',
       images: [{ url: 'https://toolyfy.in/og/url-encoder.png', width: 1200, height: 630 }],
     },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'URL Encoder & Decoder — Encode and Decode URL Strings',
+      description: 'Encode text to URL format or decode percent-encoded strings. Browser-based, no server upload needed.',
+      images: ['https://toolyfy.in/og/url-encoder.png'],
+    },
     alternates: {
       canonical: 'https://toolyfy.in/url-encoder',
     },

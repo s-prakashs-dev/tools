@@ -10,7 +10,7 @@ export function generateMetadata(): Metadata {
   return {
     title: 'Free Invoice Maker Online — Create GST Invoice PDF India',
     description:
-      'Create professional GST invoices and receipts online free. Download as PDF. Add items, GST, logo. No signup. Made for India.',
+      'Free online GST invoice maker for Indian businesses. Create, format and download professional invoices as PDF. No signup needed.',
     keywords: [
       'free invoice maker',
       'invoice generator online india',
@@ -21,10 +21,15 @@ export function generateMetadata(): Metadata {
     ],
     openGraph: {
       title: 'Free Invoice Maker Online — Create GST Invoice PDF India',
-      description:
-        'Create professional GST invoices and receipts online free. Download as PDF. Add items, GST, logo. No signup.',
+      description: 'Create professional GST invoices instantly. Add items, calculate taxes, download PDF. Free and browser-based.',
       url: 'https://toolyfy.in/invoice-maker',
       images: [{ url: 'https://toolyfy.in/og/invoice-maker.png', width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'Free Invoice Maker Online — Create GST Invoice PDF India',
+      description: 'Create professional GST invoices instantly. Add items, calculate taxes, download PDF. Free and browser-based.',
+      images: ['https://toolyfy.in/og/invoice-maker.png'],
     },
     alternates: {
       canonical: 'https://toolyfy.in/invoice-maker',

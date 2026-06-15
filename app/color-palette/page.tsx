@@ -28,6 +28,12 @@ export function generateMetadata(): Metadata {
       url: 'https://toolyfy.in/color-palette',
       images: [{ url: 'https://toolyfy.in/og/color-palette.png', width: 1200, height: 630 }],
     },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'Color Palette Generator Online Free — HEX RGB HSL Colors',
+      description: 'Generate beautiful color palettes online free. Get HEX RGB HSL values instantly.',
+      images: ['https://toolyfy.in/og/color-palette.png'],
+    },
     alternates: {
       canonical: 'https://toolyfy.in/color-palette',
     },

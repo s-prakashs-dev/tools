@@ -8,23 +8,29 @@ const tool = getToolBySlug('json-formatter')!;
 
 export function generateMetadata(): Metadata {
   return {
-    title: 'JSON Formatter & Validator Online Free — Toolyfy',
+    title: 'JSON Formatter & Validator Online Free — Beautify JSON',
     description:
-      'Format, beautify and validate JSON online for free. Instant JSON formatter with error detection. No signup required.',
+      'Free online JSON formatter, validator and beautifier. Format, minify and validate JSON instantly in your browser. No upload needed, completely private.',
     keywords: [
       'json formatter',
-      'json formatter online',
-      'json validator',
+      'json validator online',
+      'beautify json',
+      'json formatter online free',
       'json beautifier',
-      'format json online free',
-      'json formatter india',
-      'online json formatter',
+      'format json online',
+      'json minifier',
     ],
     openGraph: {
-      title: 'JSON Formatter & Validator Online Free — Toolyfy',
-      description: 'Format and validate JSON instantly in your browser. Free, fast, no signup.',
+      title: 'JSON Formatter & Validator Online Free — Beautify JSON',
+      description: 'Format, validate and beautify JSON instantly in your browser. No signup, no server uploads, completely private.',
       url: 'https://toolyfy.in/json-formatter',
       images: [{ url: 'https://toolyfy.in/og/json-formatter.png', width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'JSON Formatter & Validator Online Free — Beautify JSON',
+      description: 'Format, validate and beautify JSON instantly in your browser. No signup, no server uploads, completely private.',
+      images: ['https://toolyfy.in/og/json-formatter.png'],
     },
     alternates: {
       canonical: 'https://toolyfy.in/json-formatter',
